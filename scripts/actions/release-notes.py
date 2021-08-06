@@ -1,10 +1,7 @@
-#!/usr/bin/env python3
 from github import Github
 from invoke import run
 import os
 import re
-import json
-from shlex import quote
 
 # Get token from Workflow environment variable
 token = os.getenv('GITHUB_TOKEN', '...')
@@ -20,6 +17,8 @@ repo = github.get_repo("rudouglas/docs-website")
 
 # Get latest merge number environment variable
 lastRelease = os.getenv('LAST_RELEASE', '...')
+
+# Get newly created tag environment variable
 newTag = os.getenv('NEW_TAG', '...')
 
 # Compare diff between previous release and develop
