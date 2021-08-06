@@ -13,7 +13,7 @@ token = os.getenv('GITHUB_TOKEN', '...')
 github = Github(token)
 
 # Create heading for Release Notes
-result = '''## :rocket: What's new?\n\n\n'''
+result = "## :rocket: What's new?\n\n\n"
 
 # Get the Docs repo
 repo = github.get_repo("newrelic/docs-website")
@@ -27,7 +27,7 @@ diff = repo.compare(lastRelease, "develop")
 # Loop through commits and add details to result
 for commit in diff.commits:
   try:
-    result += '''@{author} - {message} [->]({url})\n'''.format(
+    result += "@{author} - {message} [->]({url})\n".format(
       author=commit.author.login,
       message=commit.commit.message.splitlines()[0],
       url=commit.html_url
@@ -40,5 +40,5 @@ result = result.replace('"','\\"')
 
 # Set result as an Env for use in Workflow
 run('echo "RESULT<<EOF" >> $GITHUB_ENV')
-run('echo "{}" >> $GITHUB_ENV'.format(quote(result)))
+run('echo "{}" >> $GITHUB_ENV'.format(result))
 run('echo "EOF" >> $GITHUB_ENV')
