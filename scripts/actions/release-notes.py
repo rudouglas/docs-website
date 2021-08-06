@@ -38,6 +38,6 @@ for commit in diff.commits:
 
 # Encode the string to escape characters
 result = result.replace('"','\\"')
-
+result = result[0:24999]
 # Set result as an Env for use in Workflow
 run('gh release create {newTag} -t {newTag} -n "{result}"'.format(newTag=newTag,result=result))
