@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from github import Github
 from invoke import run
 import os
