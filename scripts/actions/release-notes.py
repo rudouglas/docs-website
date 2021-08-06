@@ -20,6 +20,7 @@ repo = github.get_repo("newrelic/docs-website")
 
 # Get latest merge number environment variable
 lastRelease = os.getenv('LAST_RELEASE', '...')
+newTag = os.getenv('NEW_TAG', '...')
 
 # Compare diff between previous release and develop
 diff = repo.compare(lastRelease, "develop")
@@ -39,6 +40,4 @@ for commit in diff.commits:
 result = result.replace('"','\\"')
 
 # Set result as an Env for use in Workflow
-run('echo "RESULT<<EOF" >> $GITHUB_ENV')
-run('echo "{}" >> $GITHUB_ENV'.format(result))
-run('echo "EOF" >> $GITHUB_ENV')
+run('gh release create {newTag} -t {newTag} -n {result}'.format(newTag=newTag,result=result))
