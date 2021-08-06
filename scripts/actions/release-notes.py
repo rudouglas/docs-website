@@ -40,4 +40,4 @@ for commit in diff.commits:
 result = result.replace('"','\\"')
 
 # Set result as an Env for use in Workflow
-run('gh release create {newTag} -t {newTag} -n {result}'.format(newTag=newTag,result=result))
+run('gh release create {newTag} -t {newTag} -n "{result}"'.format(newTag=newTag,result=result))
