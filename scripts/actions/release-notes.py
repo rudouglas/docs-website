@@ -16,7 +16,7 @@ github = Github(token)
 result = "## :rocket: What's new?\n\n\n"
 
 # Get the Docs repo
-repo = github.get_repo("newrelic/docs-website")
+repo = github.get_repo("rudouglas/docs-website")
 
 # Get latest merge number environment variable
 lastRelease = os.getenv('LAST_RELEASE', '...')
